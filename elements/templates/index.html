@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'elements/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 class="text-center">Periodic Table of Movie Elements</h1>
+    <div class="key">
+        <div><span class="editing-techniques"></span> Editing Techniques</div>
+        <div><span class="scene-transitions"></span> Scene Transitions</div>
+        <div><span class="action-timing"></span> Action Timing</div>
+        <div><span class="imagery-style"></span> Imagery Style</div>
+        <div><span class="character-dialogue"></span> Character Dialouge</div>
+        <div><span class="plot-devices"></span> Plot Devices</div>
+        <div><span class="sound-audio"></span> Editing Techniques</div>
+        <div><span class="close-ups-shots"></span> Close Up Shots</div>
+        <div><span class="movement-flow"></span> Movement Flow</div>
+        <div><span class="audience-engagement"></span> Audience Engagement</div>
+        <div><span class="endings-conclusions"></span> Endings Conclusions</div>
+        <div><span class="angles-perspectives"></span> Angles Perspectives</div>
+    </div>
+    <div class="table-container d-flex flex-row align-items-end">
+
+        <div class="table d-flex flex-column">
+                {% for element in editing_techniques %}
+                    <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                        <span class="symbol">{{ element.symbol }}</span>
+                        <span class="name">{{ element.name }}</span>
+                    </div>
+                {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in scene_transitions %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in action_timing %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in imagery_style %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in story_structure %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        
+
+        <div class="table d-flex flex-column">
+            {% for element in plot_devices %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in sound_audio %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in close_ups_shots %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in audience_engagement %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in endings_conclusions %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in angles_perspectives %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="table d-flex flex-column">
+            {% for element in movement_flow %}
+            <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+                <span class="symbol">{{ element.symbol }}</span>
+                <span class="name">{{ element.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="table character-dialogue-div d-flex flex-row">
+        {% for element in character_dialouge %}
+        <div class="element {{ element.category }}" onclick="showInfo('{{ element.symbol }}')">
+            <span class="symbol">{{ element.symbol }}</span>
+            <span class="name">{{ element.name }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeInfo()">&times;</span>
+            <h2 id="elementName"></h2>
+            <p id="elementDefinition"></p>
+            <p id="elementExample" style="display:none;"></p>
+        </div>
+    </div>
+
+    <script>
+        console.log("Script testing....")
+        const elements = {
+            {% for element in elements %}
+            "{{ element.symbol }}": {
+                "name": "{{ element.name|escapejs }}",
+                "definition": "{{ element.definition|escapejs }}",
+                "example": "{{ element.example|escapejs }}"
+            }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        };
+        let currentElement = null;
+        let currentState = "definition";
+
+        function showInfo(symbol) {
+            console.log("showInfo function testing...")
+            currentElement = elements[symbol];
+            console.log(currentElement)
+            currentState = "definition";
+            updateModalContent();
+            console.log("updateModalContent function passed.")
+            document.getElementById('infoModal').style.display = "block";
+        }
+
+        function updateModalContent() {
+            const modalTitle = document.getElementById('elementName');
+            const modalContent = document.getElementById('elementDefinition');
+            const modalExample = document.getElementById('elementExample');
+
+            modalContent.style.display = "none";
+            modalExample.style.display = "none";
+            console.log("Passing test 1.")
+            if (currentState === "definition") {
+                modalTitle.textContent = currentElement.name;
+                modalContent.textContent = currentElement.definition;
+                modalContent.style.display = "block";
+            } else if (currentState === "example") {
+                modalTitle.textContent = currentElement.name;
+                // modalExample.textContent = currentElement.example
+                modalExample.innerHTML = `<iframe width='560' height=' 450' src='${currentElement.example}'></iframe>`
+                modalExample.style.display = "block";
+            } else if (currentState === "home") {
+                closeInfo();
+            }
+        }
+
+        function closeInfo() {
+            document.getElementById('infoModal').style.display = "none";
+            currentElement = null;
+            currentState = "definition";
+        }
+
+        document.getElementById('infoModal').addEventListener('click', () => {
+            if (currentState === "definition") {
+                currentState = "example";
+            } else if (currentState === "example") {
+                currentState = "home";
+            } else {
+                currentState = "definition";
+            }
+            updateModalContent();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+
+
+
+<!--Python3 manage.py collectstatic-->
